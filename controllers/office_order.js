@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const Office_order = require("../model/office_order")
 
-const add = async (req, res) => {
+const add_order = async (req, res) => {
     try {
         let order = new Office_order(req.body)
         await order.save()
@@ -22,4 +22,4 @@ const get_all = async (req, res) => {
     }
 }
 
-module.exports = { add, get_all }
+module.exports = { add_order, get_all }

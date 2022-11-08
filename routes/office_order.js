@@ -1,5 +1,5 @@
 const express = require("express")
-const { add, get_all } = require("../controllers/office_order")
+const { add_order, get_all } = require("../controllers/office_order")
 
 const route = express.Router()
 
