@@ -8,11 +8,11 @@ const office_order_schema = mongoose.Schema({
     },
     title: {
         type: String,
-        required: true,
+        required: true
     },
     visibility: {
         type: [String],
-        required: true,
+        required: true
     },
     keyword: {
         type: [String]
@@ -27,9 +27,11 @@ const office_order_schema = mongoose.Schema({
     },
     previous: {
         type: mongoose.Schema.Types.ObjectId
+    },
+    next: {
+        type: mongoose.Schema.Types.ObjectId
     }
-
-
 }, { timestamps: true })
 
-module.exports = mongoose.model("office_order", office_order_schema)
+
+module.exports = mongoose.model("order", office_order_schema)
