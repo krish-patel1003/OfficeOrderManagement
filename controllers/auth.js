@@ -40,7 +40,8 @@ const login = async (req, res, next) => {
         }
         let token = jwt.sign({
             email: user.email,
-            visibility: user.visibility
+            visibility: user.visibility,
+            is_admin: user.is_admin
         }, process.env.JWT)
 
         res.cookie("access_token", token, { httpOnly: true }).send({ response: "logged in successgully!" })

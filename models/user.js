@@ -13,6 +13,11 @@ const user_schema = mongoose.Schema({
     visibility: {
         type: [String],
         required: true,
+    },
+    is_admin: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 })
 
