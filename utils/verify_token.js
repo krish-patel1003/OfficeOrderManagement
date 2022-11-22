@@ -14,9 +14,6 @@ const verify_token = (req, res, next) => {
             }
             else {
                 req.user = user
-                console.log("user set")
-                console.log(user)
-                console.log(req.user)
                 next()
             }
         })

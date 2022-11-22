@@ -1,10 +1,21 @@
+const { findOneAndUpdate } = require("../models/office_order")
 const Office_Order = require("../models/office_order")
 
 
 const add_order = async (req, res, next) => {
     try {
+        let prev_order = false
+        if (req.body.previous) {
+            prev_order = await Office_Order.findOne({ "order_number": req.body.previous })
+            if (!prev_order) {
+                res.status(400).send({ error: "Wrong Previous Order Number" })
+                return
+            }
+            req.body.previous = prev_order._id;
+        }
         let order = new Office_Order(req.body)
         await order.save()
+        await Office_Order.findByIdAndUpdate(prev_order._id, { "next": order._id })
         res.send(order)
     } catch (error) {
         next(error)
