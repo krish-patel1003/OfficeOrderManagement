@@ -38,6 +38,9 @@ app.use((req, res) => {
     if (req.err) {
         res.status(400).send({ error: err })
     }
+    else {
+        res.status(404).send({ error: "404 page not found !"})
+    }
 })
 
 app.listen(PORT, () => {
