@@ -1,4 +1,3 @@
-const { findOneAndUpdate } = require("../models/office_order")
 const Office_Order = require("../models/office_order")
 
 
@@ -18,7 +17,8 @@ const add_order = async (req, res, next) => {
         await Office_Order.findByIdAndUpdate(prev_order._id, { "next": order._id })
         res.send(order)
     } catch (error) {
-        next(error)
+        req.err = error
+        next()
     }
 }
 
@@ -27,7 +27,8 @@ const update_order = async (req, res, next) => {
         let order = await Office_Order.findByIdAndUpdate(req.params.id, req.body, { new: true })
         res.send(order)
     } catch (error) {
-        next(error)
+        req.err = error
+        next()
     }
 }
 
@@ -36,7 +37,8 @@ const delete_order = async (req, res, next) => {
         let order = await Office_Order.findByIdAndDelete(req.params.id)
         res.send(order)
     } catch (error) {
-        next(error)
+        req.err = error
+        next()
     }
 }
 
@@ -47,7 +49,8 @@ const get_all_orders = async (req, res, next) => {
         })
         res.send(orders)
     } catch (error) {
-        next(error)
+        req.err = error
+        next()
     }
 }
 
@@ -65,7 +68,8 @@ const get_orders = async (req, res, next) => {
         let orders = await Office_Order.find(query)
         res.send(orders)
     } catch (error) {
-        next(error)
+        req.err = error
+        next()
     }
 }
 
@@ -75,7 +79,8 @@ const get_one_order = async (req, res, next) => {
         let order = await Office_Order.find({ "_id": req.params.id, "visibility": { $in: req.user.visibility } })
         res.send(order)
     } catch (error) {
-        next(error)
+        req.err = error
+        next()
     }
 }
 

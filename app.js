@@ -34,9 +34,10 @@ app.use("/auth", auth_route)
 app.use("/orders", office_order_route)
 
 //  error middleware
-app.use((err, req, res) => {
-    console.log(err)
-    res.status(400).send({ error: err })
+app.use((req, res) => {
+    if (req.err) {
+        res.status(400).send({ error: err })
+    }
 })
 
 app.listen(PORT, () => {

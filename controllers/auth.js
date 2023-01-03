@@ -19,7 +19,8 @@ const register = async (req, res, next) => {
         })
 
     } catch (error) {
-        next(error)
+        req.err = error
+        next()
     }
 }
 
@@ -47,7 +48,8 @@ const login = async (req, res, next) => {
         res.cookie("access_token", token, { httpOnly: true }).send({ response: "logged in successgully!" })
 
     } catch (error) {
-        next(error)
+        req.err = error
+        next()
     }
 }
 
