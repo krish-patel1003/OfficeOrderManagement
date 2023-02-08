@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const cookie_parser = require("cookie-parser")
 const cors = require("cors")
+const morgan = require("morgan")
 
 const auth_route = require("./routes/auth")
 const office_order_route = require("./routes/office_order")
@@ -10,6 +11,9 @@ const office_order_route = require("./routes/office_order")
 const PORT = process.env.PORT || 3000
 dotenv.config()
 const app = express()
+
+app.use(morgan('combined'))
+
 
 const connect = () => {
     mongoose.connect(process.env.MONGO_URL)
