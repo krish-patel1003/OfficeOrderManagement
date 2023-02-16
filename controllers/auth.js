@@ -20,6 +20,9 @@ const register = async (req, res, next) => {
 
     } catch (error) {
         req.err = error
+        if(req.err.code==11000){
+            req.err = {"status": "user already exists"}
+        }
         next()
     }
 }
